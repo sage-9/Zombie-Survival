@@ -1109,7 +1109,7 @@ MonoBehaviour:
   controller: {fileID: 1985366820}
   anim: {fileID: 1985366823}
   cam: {fileID: 330585546}
-  speed: 3
+  speed: 7
 --- !u!95 &1985366823
 Animator:
   serializedVersion: 7
@@ -1119,7 +1119,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985366819}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bde58de261ca821439fb0827f78780b3, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 7b197e66e5c7cfd4e879eab1db4e74a7, type: 2}
   m_Controller: {fileID: 9100000, guid: 4570793516000da41ae0abb2e757b252, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
