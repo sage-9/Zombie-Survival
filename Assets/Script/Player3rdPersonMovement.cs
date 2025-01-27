@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player3rdPersonMovement : MonoBehaviour
 {
     public CharacterController controller;
+    public Animator anim;
     public Transform cam;
 
 
@@ -16,6 +17,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("IsWalking",false);
         Vector3 rotateDirection = new Vector3(0,cam.eulerAngles.y,0);
         Quaternion rotateAngles= Quaternion.Euler(rotateDirection);        
         horizontal=Input.GetAxis("Horizontal");
@@ -25,6 +27,7 @@ public class Player3rdPersonMovement : MonoBehaviour
         
         if(direction.magnitude>0.01)
         {
+            anim.SetBool("IsWalking",true);
             transform.localRotation = rotateAngles;
             controller.Move(direction*speed*Time.deltaTime);
         }
