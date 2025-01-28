@@ -8,13 +8,16 @@ public class Player3rdPersonMovement : MonoBehaviour
     private PlayerInput playerInput;
     Vector2 moveInput; 
     bool isSprinting; 
+    bool isCrouching;
     public Animator anim;
     public Transform cam;
      float speed;
     public float walkSpeed;
-    public float sprintSpeed;    
-    float horizontal;
-    float vertical;
+    public float sprintSpeed; 
+    public float gravity;
+    public float crouchHeight;
+    public float normalHeight;
+    
     float turnSmoothVelocity;
     float turnSmoothTime=0.1f;   
 
@@ -27,16 +30,20 @@ public class Player3rdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInput == null) return;
+        if (playerInput == null) return;    
 
         moveInput=playerInput.moveInput;
         isSprinting=playerInput.isSprinting;
-
+        isCrouching=playerInput.isCrouching;
         speed=isSprinting?sprintSpeed:walkSpeed;
+
+        calculateGravity();
+        Crouch();
 
         Move(calculateDirection(moveInput),speed);
 
-        anim.SetFloat("speed",moveInput.magnitude*speed);       
+        anim.SetFloat("speed",moveInput.magnitude*speed);
+        anim.SetBool("isCrouching",isCrouching);       
     }
 
     Vector3 calculateDirection(Vector2 moveInput)
@@ -56,4 +63,21 @@ public class Player3rdPersonMovement : MonoBehaviour
     {
         controller.Move(movDir*speed*Time.deltaTime);
     }
+    void calculateGravity ()
+    {
+        bool isGrounded=controller.isGrounded;
+        Vector3 velocity = new Vector3(0,0,0);
+        if (!isGrounded)
+        {
+            velocity.y+=gravity*Time.deltaTime;
+            controller.Move(velocity*Time.deltaTime);                                    
+        }
+        else velocity.y=0;
+    }
+
+    void Crouch()
+    {
+        controller.height=isCrouching?crouchHeight:normalHeight;
+    }
+   
 }
