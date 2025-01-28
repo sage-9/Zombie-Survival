@@ -13,6 +13,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     public Transform cam;
      float speed;
     public float walkSpeed;
+    public float crouchSpeed;
     public float sprintSpeed; 
     public float gravity;
     public float crouchHeight;
@@ -35,10 +36,11 @@ public class Player3rdPersonMovement : MonoBehaviour
         moveInput=playerInput.moveInput;
         isSprinting=playerInput.isSprinting;
         isCrouching=playerInput.isCrouching;
-        speed=isSprinting?sprintSpeed:walkSpeed;
+        
 
         calculateGravity();
         Crouch();
+        sprint();
 
         Move(calculateDirection(moveInput),speed);
 
@@ -74,10 +76,15 @@ public class Player3rdPersonMovement : MonoBehaviour
         }
         else velocity.y=0;
     }
+    void sprint()
+    {
+        if(!isCrouching) speed=isSprinting?sprintSpeed:walkSpeed;
+    }
 
     void Crouch()
     {
         controller.height=isCrouching?crouchHeight:normalHeight;
+        speed=crouchSpeed;
     }
    
 }

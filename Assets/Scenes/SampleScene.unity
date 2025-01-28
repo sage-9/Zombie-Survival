@@ -358,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00999849, y: -0.00000006408306, z: 6.407658e-10, w: 0.99995005}
-  m_LocalPosition: {x: 0.034064382, y: 2.8235385, z: -1.8735105}
+  m_LocalPosition: {x: 0.034064382, y: 2.8435385, z: -1.8735105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -683,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebb64fe2fd7374045bab4928ca862e23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ebb64fe2fd7374045bab4928ca862e23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1023,7 +1023,7 @@ Transform:
   m_GameObject: {fileID: 1236323205}
   serializedVersion: 2
   m_LocalRotation: {x: 0.009998488, y: -0.000000064074484, z: -2.1534786e-10, w: 0.99995005}
-  m_LocalPosition: {x: 0.034064382, y: 2.8235385, z: -1.8735105}
+  m_LocalPosition: {x: 0.034064382, y: 2.8435385, z: -1.8735105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1073,13 +1073,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.8
+  m_Height: 1.75
   m_Radius: 0.24
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -0.08, z: 0}
+  m_Center: {x: 0, y: -0.12, z: 0}
 --- !u!4 &1985366821
 Transform:
   m_ObjectHideFlags: 0
@@ -1112,10 +1112,11 @@ MonoBehaviour:
   anim: {fileID: 1985366823}
   cam: {fileID: 330585546}
   walkSpeed: 2.5
+  crouchSpeed: 3
   sprintSpeed: 7
   gravity: -50
-  crouchHeight: 0.9
-  normalHeight: 1.8
+  crouchHeight: 1.7
+  normalHeight: 1.75
 --- !u!95 &1985366823
 Animator:
   serializedVersion: 7
