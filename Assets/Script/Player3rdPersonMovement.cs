@@ -9,6 +9,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     Vector2 moveInput; 
     bool isSprinting; 
     bool isCrouching;
+    bool isAttacking;
     public Animator anim;
     public Transform cam;
      float speed;
@@ -36,6 +37,7 @@ public class Player3rdPersonMovement : MonoBehaviour
         moveInput=playerInput.moveInput;
         isSprinting=playerInput.isSprinting;
         isCrouching=playerInput.isCrouching;
+        isAttacking=playerInput.isAttacking;
         
 
         calculateGravity();
@@ -45,7 +47,8 @@ public class Player3rdPersonMovement : MonoBehaviour
         Move(calculateDirection(moveInput),speed);
 
         anim.SetFloat("speed",moveInput.magnitude*speed);
-        anim.SetBool("isCrouching",isCrouching);       
+        anim.SetBool("isCrouching",isCrouching);
+        anim.SetBool("isAttacking",isAttacking);      
     }
 
     Vector3 calculateDirection(Vector2 moveInput)
@@ -85,6 +88,10 @@ public class Player3rdPersonMovement : MonoBehaviour
     {
         controller.height=isCrouching?crouchHeight:normalHeight;
         speed=crouchSpeed;
+    }
+    void Attack()
+    {
+        
     }
    
 }

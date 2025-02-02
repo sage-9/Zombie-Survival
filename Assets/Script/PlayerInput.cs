@@ -11,15 +11,20 @@ public class PlayerInput:MonoBehaviour
     private InputAction moveAction;
     private InputAction sprintAction;
     private InputAction crouchAction;
+    private InputAction attackAction;
     public Vector2 moveInput;
     public bool isSprinting;
     public bool isCrouching;
+    public bool isAttacking;
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         playerControls=new PlayerControls();
         moveAction= playerControls.Player.Move;
         sprintAction=playerControls.Player.Sprint;
         crouchAction= playerControls.Player.Crouch;
+        attackAction= playerControls.Player.Attack;
 
     }
     void OnEnable()
@@ -31,6 +36,8 @@ public class PlayerInput:MonoBehaviour
         sprintAction.canceled+=OnSprint;
         crouchAction.performed+=OnCrouch;
         crouchAction.canceled+=OnCrouch;
+        attackAction.performed+=OnAttack;
+        attackAction.canceled+=OnAttack;
 
 
     }
@@ -43,6 +50,8 @@ public class PlayerInput:MonoBehaviour
         sprintAction.canceled-=OnSprint;
         crouchAction.performed -=OnCrouch;
         crouchAction.canceled-=OnCrouch;
+        attackAction.performed-=OnAttack;
+        attackAction.canceled-=OnAttack;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -57,5 +66,9 @@ public class PlayerInput:MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         isCrouching=context.performed;
+    }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        isAttacking=context.performed;
     }
 }
