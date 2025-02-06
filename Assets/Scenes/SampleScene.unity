@@ -1608,6 +1608,9 @@ GameObject:
   - component: {fileID: 1985366825}
   - component: {fileID: 1985366827}
   - component: {fileID: 1985366828}
+  - component: {fileID: 1985366830}
+  - component: {fileID: 1985366829}
+  - component: {fileID: 1985366831}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1916,6 +1919,52 @@ MonoBehaviour:
   - m_Rig: {fileID: 268728236}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &1985366829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985366819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbfaa1e0cc9a5240930260c946803f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveInput: {x: 0, y: 0}
+  isSprinting: 0
+  isCrouching: 0
+  isAttacking: 0
+--- !u!114 &1985366830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985366819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e27448fdfb9ffb4dadca4bc6269ba70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 1985366831}
+  damageAmount: 20
+--- !u!114 &1985366831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985366819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97135d27e856c874bbb5d4ff3a37c294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  maxArmor: 50
+  currentArmor: 0
 --- !u!4 &2060170770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3485682938593445570, guid: ebb64fe2fd7374045bab4928ca862e23, type: 3}
