@@ -4,22 +4,32 @@ using UnityEngine.EventSystems;
 
 public class Player3rdPersonMovement : MonoBehaviour
 {
+    // Input
     public CharacterController controller;
     private PlayerInput playerInput;
     Vector2 moveInput; 
     bool isSprinting; 
     bool isCrouching;
     bool isAttacking;
+
+    //Animations
     public Animator anim;
     public Transform cam;
-     float speed;
+
+    //Player Movement stats
+    float speed;
+
+    //movement speeds
     public float walkSpeed;
     public float crouchSpeed;
-    public float sprintSpeed; 
+    public float sprintSpeed;
     public float gravity;
+
+    //Crouch variables
     public float crouchHeight;
     public float normalHeight;
-    
+
+    //rotation variables    
     float turnSmoothVelocity;
     float turnSmoothTime=0.1f;   
 
@@ -43,7 +53,6 @@ public class Player3rdPersonMovement : MonoBehaviour
         calculateGravity();
         Crouch();
         sprint();
-
         Move(calculateDirection(moveInput),speed);
 
         anim.SetFloat("speed",moveInput.magnitude*speed);
@@ -91,7 +100,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     }
     void Attack()
     {
-        
+        speed=0;
     }
    
 }
