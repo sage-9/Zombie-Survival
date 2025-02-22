@@ -36,8 +36,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     void Start() 
     {
         playerInput = GetComponent<PlayerInput>();
-        if (playerInput == null) Debug.LogError("PlayerInput component not found on this GameObject!");
-        
+        if (playerInput == null) Debug.LogError("PlayerInput component not found on this GameObject!");        
     }    
     // Update is called once per frame
     void Update()
@@ -100,7 +99,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     }
     void Attack()
     {
-        speed=0;
+       
     }
    
 }
