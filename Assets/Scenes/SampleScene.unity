@@ -784,6 +784,65 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -6908762100231373148, guid: ebb64fe2fd7374045bab4928ca862e23, type: 3}
   m_PrefabInstance: {fileID: 720615354}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &496542745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 496542747}
+  - component: {fileID: 496542746}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &496542746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496542745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55334b7148298cb4798626eef4fe254b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0.2
+  maxAmmo: 10
+  currentAmmo: 0
+  reloadTime: 1.5
+  isReloading: 0
+  damage: 20
+  range: 100
+  firePoint: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  hitEffect: {fileID: 0}
+  recoilAmount: 2
+  bulletSpread: 0.1
+  fpsCam: {fileID: 0}
+  crosshair: {fileID: 0}
+  crosshairExpandAmount: 10
+--- !u!4 &496542747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496542745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.41102296, y: 2.0673969, z: -1.0361549}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &559080717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2525213446790289079, guid: ebb64fe2fd7374045bab4928ca862e23, type: 3}
@@ -1991,3 +2050,4 @@ SceneRoots:
   - {fileID: 679579347}
   - {fileID: 225186607}
   - {fileID: 1236323211}
+  - {fileID: 496542747}
