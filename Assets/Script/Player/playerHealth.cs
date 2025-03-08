@@ -14,6 +14,14 @@ public class PlayerHealth : MonoBehaviour
         currentArmor = maxArmor;
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            TakeDamage(10);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         if (currentArmor > 0)

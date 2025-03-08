@@ -5,30 +5,32 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private PlayerInput playerInput;
     public GameObject weapon;
-    public Animator anim;
     public LayerMask Ignorelayer;
-    MeleeWeaponStats weaponStats;
-    bool isReadyForAttack;
+    MeleeWeapon weaponStats;
+    Collider meleeWeaponCollider;
     public float radius=3f;
     Vector3 offset;
     int damage;
     float range;
     float attackTime;
-    bool onAttack;
+    bool isReadyForAttack;
     bool isAttacking;
-    bool isReadyForAttacking;
     bool hasAttacked;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void OnEnable()
+    {
+        PlayerInput.Instance.OnAttack+=Attack;                
+    }
+    void OnDisable()
+    {
+        PlayerInput.Instance.OnAttack-=Attack;
+    }
     void Start()
     {       
-        weaponStats= weapon.GetComponent<MeleeWeaponStats>();
-        playerInput = GetComponent<PlayerInput>();
+        weaponStats= weapon.GetComponent<MeleeWeapon>();
+        meleeWeaponCollider=weapon.GetComponent<Collider>();
         isAttacking=false;
         hasAttacked=true;
-        if (playerInput == null) Debug.LogError("PlayerInput component not found on this GameObject!");
-                
     }
 
     // Update is called once per frame
@@ -38,20 +40,16 @@ public class PlayerAttack : MonoBehaviour
         damage = weaponStats.damage;
         range = weaponStats.range;
         attackTime= weaponStats.attackSpeed;
-        onAttack=playerInput.isAttacking;
-        isReadyForAttacking=!isAttacking && hasAttacked;
-        anim.SetBool("isAttacking",onAttack);
-        if(onAttack&&isReadyForAttacking)
-        {
-           Attack();            
-        }                      
+      
+        isReadyForAttack=!isAttacking && hasAttacked;
+        meleeWeaponCollider.enabled=isAttacking;                   
     }
  
     void Attack()
-    {   
+    {          
         isAttacking=true;
-        Debug.Log("called");
         hasAttacked=false;
+        Debug.Log("called");
         StartCoroutine("weaponCooldown");
         if(Physics.SphereCast(transform.position,radius,Vector3.forward,out RaycastHit hitInfo,range,~Ignorelayer))
         {
