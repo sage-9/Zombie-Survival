@@ -14,15 +14,15 @@ public class PlayerAttack : MonoBehaviour
     float range;
     float attackTime;
     //Events
-    public event Action <Collider,int> OnHit;
+    public static event Action <Collider,int> OnHit;
     void OnDisable()
     {
-        PlayerInput.Instance.OnAttack-=Attack;
+        PlayerInput.OnAttack-=Attack;
     }
     void Start()
     {       
         weaponStats= weapon.GetComponent<MeleeWeapon>();
-        PlayerInput.Instance.OnAttack+=Attack;
+        PlayerInput.OnAttack+=Attack;
     }
 
     // Update is called once per frame

@@ -30,15 +30,15 @@ public class Player3rdPersonMovement : MonoBehaviour
 
     void Start() 
     {
-        PlayerInput.Instance.OnMove+=TakeMovementInput;
-        PlayerInput.Instance.OnCrouch+=HandleCrouch;
-        PlayerInput.Instance.OnSprint+=HandleSprint;       
+        PlayerInput.OnMove+=TakeMovementInput;
+        PlayerInput.OnCrouch+=HandleCrouch;
+        PlayerInput.OnSprint+=HandleSprint;       
     }
     void OnDisable()
     {
-        PlayerInput.Instance.OnMove-=TakeMovementInput;
-        PlayerInput.Instance.OnCrouch-=HandleCrouch;
-        PlayerInput.Instance.OnSprint-=HandleSprint;
+        PlayerInput.OnMove-=TakeMovementInput;
+        PlayerInput.OnCrouch-=HandleCrouch;
+        PlayerInput.OnSprint-=HandleSprint;
     }
     // Update is called once per frame
     void Update()

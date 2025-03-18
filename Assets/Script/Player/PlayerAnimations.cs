@@ -8,15 +8,15 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         if(animationData!=null) animationData.speedChanges+=SpeedParameterChages;
-        PlayerInput.Instance.OnCrouch+=CrouchAnimation;
-        PlayerInput.Instance.OnAttack+=AttackAnimation;
+        PlayerInput.OnCrouch+=CrouchAnimation;
+        PlayerInput.OnAttack+=AttackAnimation;
     }
 
     void OnDisable()
     {
         if (animationData != null) animationData.speedChanges-=SpeedParameterChages;
-        PlayerInput.Instance.OnAttack-=AttackAnimation;
-        PlayerInput.Instance.OnCrouch-=CrouchAnimation;       
+        PlayerInput.OnAttack-=AttackAnimation;
+        PlayerInput.OnCrouch-=CrouchAnimation;       
     }
     void SpeedParameterChages(float speed)
     {

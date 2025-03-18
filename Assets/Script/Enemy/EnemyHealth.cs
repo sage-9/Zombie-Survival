@@ -11,7 +11,6 @@ public class EnemyHealth : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerAttack= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
         ragdoll=GetComponent<Ragdoll>();
         myCollider=GetComponent<Collider>();
         currentHealth = maxHealth;

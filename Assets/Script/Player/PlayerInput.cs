@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput:MonoBehaviour
 {
-    public static PlayerInput Instance { get; private set;}
     // New Input System
     private PlayerControls playerControls;
     private InputAction moveAction;
@@ -13,20 +12,17 @@ public class PlayerInput:MonoBehaviour
     private InputAction attackAction;
 
     public delegate void MoveAction(Vector2 direction);
-    public event MoveAction OnMove;
+    public static event MoveAction OnMove;
     public delegate void AttackAction();
-    public event AttackAction OnAttack;
+    public static event AttackAction OnAttack;
     public delegate void SprintAction(bool isPressed);
-    public event SprintAction OnSprint;
+    public static event SprintAction OnSprint;
     public delegate void CrouchAction(bool isPressed);
-    public event SprintAction OnCrouch;
+    public static event SprintAction OnCrouch;
 
 
     void Awake()
     {
-        if (Instance == null) Instance=this;
-        else Destroy(gameObject);
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
@@ -69,7 +65,6 @@ public class PlayerInput:MonoBehaviour
         attackAction.performed-=OnAttackTriggered;
         
     }
-
     void OnMovePerformed(InputAction.CallbackContext context)
     {
         OnMove?.Invoke(context.ReadValue<Vector2>());
