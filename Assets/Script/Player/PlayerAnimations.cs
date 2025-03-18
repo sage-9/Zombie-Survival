@@ -3,10 +3,9 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] Player3rdPersonMovement animationData;
-    [SerializeField] PlayerInput playerInput;
     [SerializeField]private Animator animator;
 
-    void OnEnable()
+    void Start()
     {
         if(animationData!=null) animationData.speedChanges+=SpeedParameterChages;
         PlayerInput.Instance.OnCrouch+=CrouchAnimation;

@@ -28,7 +28,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     public delegate void SpeedChanges(float speed);
     public SpeedChanges speedChanges;
 
-    void OnEnable() 
+    void Start() 
     {
         PlayerInput.Instance.OnMove+=TakeMovementInput;
         PlayerInput.Instance.OnCrouch+=HandleCrouch;
