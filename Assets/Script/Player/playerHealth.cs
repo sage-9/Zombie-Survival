@@ -8,36 +8,43 @@ public class PlayerHealth : MonoBehaviour
     public int maxArmor = 50;
     public int currentArmor;
 
+    Collider coll;
+
+    void OnEnable()
+    {
+        EnemyAttack.onDamage+=TakeDamage;
+    }
+    void OnDisable()
+    {
+        EnemyAttack.onDamage-=TakeDamage;        
+    }
+
     void Start()
     {
+        coll=GetComponent<Collider>();
         currentHealth = maxHealth;
         currentArmor = maxArmor;
     }
 
-    void OnCollisionEnter(Collision collision)
+
+    public void TakeDamage(int damage,Collider playerCollider)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if(coll==playerCollider)
         {
-            TakeDamage(10);
+            if (currentArmor > 0)
+            {
+                int armorAbsorb = Mathf.Min(currentArmor, damage);
+                currentArmor -= armorAbsorb;
+                damage -= armorAbsorb;
+            }
+            currentHealth -= damage;
+            Debug.Log($"Player took damage! Health: {currentHealth}, Armor: {currentArmor}");
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        if (currentArmor > 0)
-        {
-            int armorAbsorb = Mathf.Min(currentArmor, damage);
-            currentArmor -= armorAbsorb;
-            damage -= armorAbsorb;
-        }
-
-        currentHealth -= damage;
-
-        Debug.Log($"Player took damage! Health: {currentHealth}, Armor: {currentArmor}");
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        
     }
 
     void Die()

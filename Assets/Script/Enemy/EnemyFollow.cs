@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ public class EnemyFollow : MonoBehaviour
     public Animator animator;    
     float speed;
     float turnSmoothTime=5f;
+    public static event Action OnZombieAttack;
     // Update is called once per frame
     void Update()
     {
@@ -22,10 +24,11 @@ public class EnemyFollow : MonoBehaviour
             speed=agent.speed;
             agent.SetDestination(TargetPos.position);
 
-            if(agent.velocity.magnitude<=0.01)
+            if(agent.velocity.magnitude < 0.1)
             {
                 speed=0;
                 FaceTarget();
+                OnZombieAttack?.Invoke();
                 animator.SetTrigger("Attack");
             }
         }
