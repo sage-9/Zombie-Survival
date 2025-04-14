@@ -23,15 +23,12 @@ public class WaveManager : MonoBehaviour
     
     void Start()
     {
-        Wave.waveCounter=0;
-      
-        
+        Wave.waveCounter=0;        
     }
 
     void CreateWave()
     {
-        wave=new Wave(enemies,ActiveEnemies,zombie);   
-             
+        wave=new Wave(enemies,ActiveEnemies,zombie);             
     }
     void Update()
     {
@@ -41,7 +38,6 @@ public class WaveManager : MonoBehaviour
             wave.spawnEnemies(spawnPositions);
         }
         if(wave.hasCompleted)HandleWaveCompletion();
-
     }
     void HandleWaveCompletion()
     {
