@@ -3,23 +3,24 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public EnemyManager enemyManager;
     public int maxHealth = 100;
     public int currentHealth;
     public Animator anim;
     Collider myCollider;
 
     public static event Action<float> OnEnemyHealthChanged;
+    public static event Action<GameObject> OnDie;
 
     void OnEnable()
     {
-        enemyManager.ActiveEnemies.Add(gameObject);
         myCollider = GetComponent<Collider>();
         currentHealth = maxHealth;
         MeleeWeapon.OnHit += TakeDamage;
     }
     void OnDisable()
     {
+        OnDie?.Invoke(gameObject);
+        
         MeleeWeapon.OnHit -= TakeDamage;
     }
 
@@ -40,7 +41,6 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        enemyManager.ActiveEnemies.Remove(gameObject);
         anim.SetTrigger("IsDead");
         Destroy(gameObject, 0.75f);
     }
