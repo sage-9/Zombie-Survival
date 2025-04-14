@@ -5,6 +5,7 @@ public class Player3rdPersonMovement : MonoBehaviour
 {
     //Player Movement 
     public CharacterController controller;
+    public Camera cam;
     public Transform camDirection;
     Vector3 moveDirection;
     float speed;
@@ -30,6 +31,7 @@ public class Player3rdPersonMovement : MonoBehaviour
 
     void Start() 
     {
+        cam=FindAnyObjectByType<Camera>();
         PlayerInput.OnMove+=TakeMovementInput;
         PlayerInput.OnCrouch+=HandleCrouch;
         PlayerInput.OnSprint+=HandleSprint;       
@@ -43,6 +45,7 @@ public class Player3rdPersonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        camDirection=cam.transform;
         calculateGravity();
         CalculateSpeed(isSprinting,isCrouching);           
         Move(calculateDirection(moveDirection),speed);           

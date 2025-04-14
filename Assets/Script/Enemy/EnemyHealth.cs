@@ -1,45 +1,47 @@
+using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public EnemyManager enemyManager;
     public int maxHealth = 100;
     public int currentHealth;
     public Animator anim;
-    PlayerAttack PlayerAttack; 
-    Ragdoll ragdoll;
     Collider myCollider;
+
+    public static event Action<float> OnEnemyHealthChanged;
 
     void OnEnable()
     {
-        ragdoll=GetComponent<Ragdoll>();
-        myCollider=GetComponent<Collider>();
+        enemyManager.ActiveEnemies.Add(gameObject);
+        myCollider = GetComponent<Collider>();
         currentHealth = maxHealth;
-        PlayerAttack.OnHit+=TakeDamage;
-       
+        MeleeWeapon.OnHit += TakeDamage;
     }
     void OnDisable()
     {
-        PlayerAttack.OnHit -=TakeDamage;
+        MeleeWeapon.OnHit -= TakeDamage;
     }
 
-    public void TakeDamage(Collider hitObject,int damage)
+    public void TakeDamage(Collider hitObject, int damage)
     {
-        if(hitObject==myCollider)
+        if (hitObject == myCollider)
         {
             currentHealth -= damage;
-            anim.SetTrigger("TakeDamage");        
-            Debug.Log($"zombie took damage! Health: {currentHealth}");
+            anim.SetTrigger("TakeDamage");
+            OnEnemyHealthChanged?.Invoke(currentHealth);
+            
         }
         if (currentHealth <= 0)
         {
             Die();
-        }        
+        }
     }
 
     void Die()
     {
-        Debug.Log("zombie Died!");
+        enemyManager.ActiveEnemies.Remove(gameObject);
         anim.SetTrigger("IsDead");
-        Destroy(gameObject,3.0f);      
+        Destroy(gameObject, 0.75f);
     }
 }

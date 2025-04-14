@@ -5,51 +5,15 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject weapon;
-    public LayerMask Ignorelayer;
-    MeleeWeapon weaponStats;
-    public float radius=3f;
     Vector3 offset;
-    int damage;
-    float range;
-    float attackTime;
+    bool isMelee;
     //Events
-    public static event Action <Collider,int> OnHit;
-    void OnDisable()
-    {
-        PlayerInput.OnAttack-=Attack;
-    }
-    void Start()
-    {       
-        weaponStats= weapon.GetComponent<MeleeWeapon>();
-        PlayerInput.OnAttack+=Attack;
-    }
+    public static event Action<Vector3,Vector3> OnMeleeAttack;    
 
-    // Update is called once per frame
-    void Update()
+    void Attack() 
     {
-        offset=transform.forward*range;
-        damage = weaponStats.damage;
-        range = weaponStats.range;
-        attackTime= weaponStats.attackSpeed;                  
+        OnMeleeAttack?.Invoke(transform.position,transform.forward);    
     }
- 
-    void Attack()
-    {          
-        Debug.Log("called");        
-        Collider[] EnemiesHit=Physics.OverlapSphere(transform.position+offset,radius,~Ignorelayer);
-        foreach(Collider Enemy in EnemiesHit)
-        {
-            if(Enemy.tag=="Enemy")
-            {
-                OnHit.Invoke(Enemy,damage);
-            }
-        }
-    }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position+offset,radius);
-    }    
+    
 }
 

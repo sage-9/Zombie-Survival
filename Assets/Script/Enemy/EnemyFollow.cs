@@ -10,10 +10,17 @@ public class EnemyFollow : MonoBehaviour
     public Animator animator;    
     float speed;
     float turnSmoothTime=5f;
-    public static event Action OnZombieAttack;
     // Update is called once per frame
     void Update()
     {
+        if(TargetPos!=null)
+        {
+            TargetPos=EnemyBrain.Instance.playerLocation;   
+        }
+        else
+        {
+            TargetPos=transform;
+        }
         float distance = Vector3.Distance(TargetPos.position,transform.position);
         animator.SetFloat("Speed",agent.velocity.magnitude);
         animator.SetFloat("Distance",distance);        
@@ -28,7 +35,6 @@ public class EnemyFollow : MonoBehaviour
             {
                 speed=0;
                 FaceTarget();
-                OnZombieAttack?.Invoke();
                 animator.SetTrigger("Attack");
             }
         }

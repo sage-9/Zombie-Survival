@@ -298,7 +298,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Standing Melee Attack Downward
-  m_Speed: 2
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7826862375507091840}
@@ -312,7 +312,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: c4b324867ba3f5144921487b5fcdfec3, type: 3}
+  m_Motion: {fileID: 7400000, guid: e9a5b76d019fc354091439576e0da6b9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

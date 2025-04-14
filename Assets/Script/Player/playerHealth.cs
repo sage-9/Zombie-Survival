@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     public int currentArmor;
 
     Collider coll;
+
+    public static event Action<float> OnHealthChanged;
+    public static event Action<float> OnArmourChanged;
 
     void OnEnable()
     {
@@ -38,7 +43,8 @@ public class PlayerHealth : MonoBehaviour
                 damage -= armorAbsorb;
             }
             currentHealth -= damage;
-            Debug.Log($"Player took damage! Health: {currentHealth}, Armor: {currentArmor}");
+            OnHealthChanged?.Invoke(currentHealth);
+            OnArmourChanged?.Invoke(currentArmor);          
             if (currentHealth <= 0)
             {
                 Die();
