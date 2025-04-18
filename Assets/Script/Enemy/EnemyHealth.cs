@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -7,6 +8,9 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public Animator anim;
     Collider myCollider;
+    Material enemyMaterial; 
+    public MaterialFlasher flasher;
+    public Renderer rendererComponent;
 
     public static event Action<float> OnEnemyHealthChanged;
     public static event Action<GameObject> OnDie;
@@ -23,6 +27,11 @@ public class EnemyHealth : MonoBehaviour
         
         MeleeWeapon.OnHit -= TakeDamage;
     }
+    void Start()
+    {
+
+        enemyMaterial=rendererComponent.material;
+    }
 
     public void TakeDamage(Collider hitObject, int damage)
     {
@@ -30,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
         {
             currentHealth -= damage;
             anim.SetTrigger("TakeDamage");
+            flasher.FlashRed(enemyMaterial, 0.2f); 
             OnEnemyHealthChanged?.Invoke(currentHealth);
             
         }

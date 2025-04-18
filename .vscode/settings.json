@@ -67,5 +67,5 @@
         "*.sln": "*.csproj"
     },
     "Zombie Survival.sln=======dotnet.defaultSolution": "Zombie-Survival.sln>>>>>>>Stashedchanges",
-    "dotnet.defaultSolution": "Zombie-Survival.sln"
+    "dotnet.defaultSolution": "Zombie Survival.sln"
 }
