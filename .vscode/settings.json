@@ -56,19 +56,16 @@
         "temp/": true,
         "Temp/": true
     },
-<<<<<<< Updated upstream
-    "files.associations": {
+    "<<<<<<<Updatedupstreamfiles.associations": {
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-        "*.unity": "yaml",
+        "*.unity": "yaml"
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "*.sln": "*.csproj",
+        "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Zombie Survival.sln"
-=======
+    "Zombie Survival.sln=======dotnet.defaultSolution": "Zombie-Survival.sln>>>>>>>Stashedchanges",
     "dotnet.defaultSolution": "Zombie-Survival.sln"
->>>>>>> Stashed changes
 }
